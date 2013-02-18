@@ -1,0 +1,4 @@
+# test-5
+# this term has no candidates
+# issue message and halt
+0

@@ -1,0 +1,34 @@
+# test.txt
+# typical dataset
+product chips 1.00
+product porkrinds 1.25
+product pretzels .90
+# define vending machine with 2 rows of 3 columns
+vendmach unh42 B 2
+slot unh42 A 0 3 chips 
+slot unh42 A 1 3 chips
+slot unh42 B 0 1 porkrinds
+slot unh42 B 1 1 porkrinds
+slot unh42 B 2 1 pretzels
+# define vending machine with 1 row of 1 column
+vendmach unh18 A 0
+# attempt to assign a non-existent product to a slot
+slot unh18 A 0 3 candybar
+slot unh18 A 0 2 pretzels
+refill unh18
+refill unh42
+purchase unh42 A 0
+purchase unh42 A 1
+purchase unh42 A 2
+purchase unh18 A 0
+purchase unh42 B 0
+purchase unh42 B 1
+purchase unh42 B 2
+# this purchase command specifies a non-existent slot
+purchase unh42 D 4
+# this purchase command specifies a non-existent machine
+purchase unh13 A 0
+# this purchase should be refused because slot is empty
+purchase unh42 B 1
+refill unh42
+purchase unh42 B 1

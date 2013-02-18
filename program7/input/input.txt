@@ -1,0 +1,44 @@
+# test dataset for medical application
+# define 4 persons including 2 physicians
+person  stansickie
+person  markmedicade     physician 
+person  cleocutter    physician    .10
+person  ferdfeelbad
+# define 2 hospitals
+hospital casinoclinic     1000.00   200.00   350.50
+hospital slicendice    1200.  250.  400.50
+# define hospital stay => stansickie pays $701 to casinoclinic   
+stay   stansickie      casinoclinic 091101  091102   private
+# disallow, conflict with prior hospital stay
+stay  stansickie      slicendice  091031 091101
+# define hospital stay => ferdfeelbad pays slicendice $750
+stay   ferdfeelbad      slicendice  091101 091103
+# define hospital stay => stansickie pays slicendice $500
+stay   stansickie      slicendice  091106 091107
+# define some surgical procedures
+procedure appendectomy 4000
+procedure liposuction 10000
+# define some medications
+medicine   aspirin casinoclinic 10.00
+medicine   aspirin slicendice 11.00
+medicine  tylenol  casinoclinic 12.00
+# define hospital stay => stansickie pays casinoclinic $400
+stay      stansickie casinoclinic 091108 091109 
+# define prescription => stansickie pays casinoclinic $50 for 5 days of aspirin 
+prescription stansickie 1234 aspirin casinoclinic 5
+# define surgery => stansickie pays surgeon cleocutter $4400, casinoclinic $1000 o.r charge
+surgery   stansickie appendectomy cleocutter casinoclinic  091101  1000 1130
+# define prescription => stansickie pays $48 to casinoclinic for 4 days of tylenol
+prescription stansickie 543  tylenol  casinoclinic 4
+# illegal prescription medicine not defined
+prescription ferdfeelbad 4567 placebo slicendice 6
+# define new medicine
+medicine  placebo slicendice 23.50
+# define hospital stay => cleocutter pays slicendice $801 
+stay cleocutter  slicendice 091110  091111 private
+# define surgery => cleocutter pays markmedicade $10000, slicendice $1200 o.r. fee
+surgery  cleocutter liposuction markmedicade slicendice 091110 0900 1000
+# define prescription => cleocutter pays slicendice $47 for 2 days of placebo
+prescription cleocutter 6543 placebo  slicendice 2
+# reject this hospital stay, it conflicts with scheduled surgery for the surgeon
+stay  markmedicade casinoclinic 091110 091111 private

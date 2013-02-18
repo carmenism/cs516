@@ -1,0 +1,27 @@
+# test.txt
+# typical dataset
+product chips .90
+product cheetos 1.15
+product pretzels .85
+# define vending machine with 2 rows of 2 columns
+vendmach unh42 B 1 dime 3 quarter 3 nickel 3
+slot unh42 A 0 3 chips 
+slot unh42 A 1 3 chips
+slot unh42 B 0 5 cheetos
+slot unh42 B 1 5 pretzels
+refill unh42
+# exact change purchase
+purchase unh42 A 0 quarter 3 dime 1 nickel 1
+# another exact purchase
+purchase unh42 A 1 quarter 1 dime 5 nickel 3
+# this purchase requires .10 change
+purchase unh42 A 0 quarter 4
+# exact change purchase that refills dime slot.
+purchase unh42 A 1 dime 4 quarter 2
+# change required a dime for each of the next three purchases
+purchase unh42 B 0 quarter 5
+purchase unh42 B 0 quarter 5
+purchase unh42 B 0 quarter 5
+purchase unh42 B 0 quarter 5
+# purchase refused because dispenser cannot supply correct change.
+purchase unh42 B 1 quarter 4 
